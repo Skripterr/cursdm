@@ -1,6 +1,6 @@
 
 const jwt = require('jsonwebtoken');
-const { getUserByUsername } = require('../db/db');
+const { getUserByUsername } = require('../db/user');
 const bcrypt = require('bcryptjs');
 const dotenv = require('dotenv');
 
@@ -10,38 +10,39 @@ const signIn = async (req, res) => {
     const { username, password } = req.body;
 
     if (!username || !password) {
-        return res.status(400).json({ success: false, message: 'Username and password are required.' });
+        return res.render('signin', { message: 'Заполните все поля.' });
     }
 
     try {
         const user = await getUserByUsername(username);
 
         if (!user || !bcrypt.compareSync(password, user.password)) {
-            return res.status(401).json({ success: false, message: 'Incorrect username or password.' });
+            return res.render('signin', { message: 'Неверный логин или пароль.' });
         }
 
         const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: '1d' });
-
-        res.json({ success: true, data: { access_token: token } });
+        res.cookie('access_token', token).redirect('/dashboard');
     } catch (err) {
         console.error(err);
-        res.status(500).json({ success: false, message: 'Internal server error.' });
+        res.status(500).render('error', {code: 500, message: 'Внутренняя ошибка сервера.'});
     }
 };
 
 const validateJsonWebToken = (req, res, next) => {
-    const token = req.headers['authorization'];
+    const token = req.cookies.access_token;
 
     if (!token) {
-        return res.status(400).json({ success: false, message: 'No Json Web Token specified.' });
+        res.status(403).render('error', {code: 403, message: 'Вы не вошли как пользователь.'});
     }
 
     jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
         if (err) {
-            return res.status(401).json({ success: false, message: 'Invalid Json Web Token.' });
+            // Cookie can't unset due to browser privacy.
+            // Happens when i tries to login in Requestly
+            res.status(403);
+            res.clearCookie('access_token');
+            res.render('error', {code: 403, message: 'Вы не вошли как пользователь.'});
         }
-
-        console.log(decoded);
 
         req.userId = decoded.userId;
         next();
@@ -53,7 +54,7 @@ const signOut = (req, res) => {
         res.clearCookie('access_token');
     }
 
-    res.redirect('/signin')
+    res.redirect('/signin');
 };
 
 module.exports = { signIn, validateJsonWebToken, signOut };

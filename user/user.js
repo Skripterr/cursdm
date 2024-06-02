@@ -1,22 +1,22 @@
-const { getUserById } = require('../db/db');
+const { getUserById } = require('../db/user');
 const dotenv = require('dotenv');
 
 dotenv.config();
 
-const getUser = async (req, res) => {
+const getUser = async (req, res, next) => {
     try {
-        const { userId } = req.query;
-
-        user = await getUserById(userId || req.userId);
+        user = await getUserById(req.userId);
 
         if (!user) {
-            return res.status(404).json({ success: false, message: 'User not found.' });
+            return res.status(404).render('error', { code: 404, message: 'Не найден пользователь. Обратитесь к администратору.' });
         }
 
-        res.json({ success: true, data: { id: 10000000 + user.id, name: user.name, username: user.username } });
+        req.name = user.name;
+        req.username = user.username;
+        next();
     } catch (err) {
         console.error(err);
-        res.status(500).json({ success: false, message: 'Internal server error.' });
+        res.status(500).render('error', {code: 500, message: 'Внутренняя ошибка сервера.'});
     }
 };
 

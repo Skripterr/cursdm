@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error <%= code %>
+    </title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 h-screen">
+    <div class="flex flex-col items-center justify-center h-full">
+        <h1 class="text-9xl font-bold text-red-500">
+            <%= code %>
+        </h1>
+        <p class="text-2xl font-medium text-gray-800">
+            <%= message %>
+        </p>
+        <a href="/" class="mt-6 px-6 py-3 bg-blue-500 text-white font-medium rounded-md hover:bg-blue-600">Back
+            to Home</a>
+    </div>
+</body>
+
+</html>
