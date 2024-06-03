@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/css/iziToast.min.css" rel="stylesheet">
     <title>Главная / Dimentus</title>
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.0/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.0/dist/cdn.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
 </head>
 
@@ -155,13 +155,14 @@
 
                 <tbody class="bg-white divide-y divide-gray-200">
                     <div x-data="{ openModalEdit: false }">
-                        <div x-show="openModalEdit" @click.away="openModalEdit = false">
+                        <div x-show="openModalEdit">
                             <div class="fixed inset-0 z-5 transition-opacity" aria-hidden="true">
                                 <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
                             </div>
                             <div class="fixed inset-0 z-10 flex items-center justify-center">
                                 <div class="bg-white p-6 rounded-md shadow-lg w-full max-w-md">
-                                    <form action="/addProduct" method="POST">
+                                    <form action="/editProduct" method="POST">
+                                        <input id="idModalEdit" type="hidden" name="id">
                                         <div class="mb-4">
                                             <label for="name" class="block text-gray-700 font-medium mb-2">
                                                 Наименование
@@ -217,7 +218,7 @@
                         </div>
 
                         <% for(let item of items) { %>
-                            <tr data-name="<%= item.name %>" data-type="<%= item.type %>"
+                            <tr data-id="<%= item.id %>" data-name="<%= item.name %>" data-type="<%= item.type %>"
                                 data-vendor="<%= item.vendor %>" data-release-date="<%= item.release_date %>">
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <%= item.name %>
@@ -233,7 +234,8 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <!-- Кусок нерабочего кода -->
-                                    <button @click="openModalEdit = true"
+
+                                    <button x-on:click="openModalEdit = true"
                                         class="openModalEditBtn inline-block align-baseline text-blue-500 hover:text-blue-800 ml-2"
                                         type="button">
                                         <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
@@ -276,6 +278,7 @@
 
             $('.openModalEditBtn').on('click', function () {
                 const row = $(this).closest('tr');
+                $('#idModalEdit').val(row.data('id'));
                 $('#nameModalEdit').val(row.data('name'));
                 $('#typeModalEdit').val(row.data('type'));
                 $('#vendorModalEdit').val(row.data('vendor'));
