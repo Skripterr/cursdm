@@ -2,7 +2,7 @@ const express = require('express');
 const { initializeDB, closeDB } = require('./db/db');
 const { signIn, validateJsonWebToken, signOut } = require('./auth/auth');
 const { getUser } = require('./user/user');
-const { addProduct, getProducts, editProducts, deleteProducts } = require('./product/product');
+const { addProducts, getProducts, editProducts, deleteProducts } = require('./product/product');
 const cookieParser = require('cookie-parser');
 const path = require('path');
 const dotenv = require('dotenv');
@@ -49,16 +49,16 @@ app.get('/dashboard', validateJsonWebToken, getUser, getProducts, (req, res) => 
   res.render('dashboard', { name: req.name, username: req.username, items: req.items });
 });
 
-app.post('/dashboard', validateJsonWebToken, getUser, addProduct, getProducts, (req, res) => {
-  res.render('dashboard', { name: req.name, username: req.username, items: req.items });
+app.post('/addProduct', validateJsonWebToken, getUser, addProducts, (req, res) => {
+  res.redirect('/dashboard?success=1');
 });
 
-app.patch('/dashboard', validateJsonWebToken, getUser, editProducts, getProducts, (req, res) => {
-  res.render('dashboard', { name: req.name, username: req.username, items: req.items });
+app.post('/editProduct', validateJsonWebToken, getUser, editProducts, (req, res) => {
+  res.redirect('/dashboard?success=1');
 });
 
-app.delete('/dashboard', validateJsonWebToken, getUser, deleteProducts, getProducts, (req, res) => {
-  res.render('dashboard', { name: req.name, username: req.username, items: req.items });
+app.post('/deleteProduct', validateJsonWebToken, getUser, deleteProducts, (req, res) => {
+  res.redirect('/dashboard?success=1');
 });
 
 app.all('/*', (req, res) => {

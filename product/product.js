@@ -1,9 +1,9 @@
-const { createProduct, getProductsAll } = require('../db/product');
+const { createProduct, getProductsAll, deleteProduct } = require('../db/product');
 const dotenv = require('dotenv');
 
 dotenv.config();
 
-const addProduct = async (req, res, next) => {
+const addProducts = async (req, res, next) => {
     try {
         const { name, type, vendor, release_date } = req.body;
 
@@ -34,7 +34,19 @@ const editProducts = async (req, res, next) => {
 };
 
 const deleteProducts = async (req, res, next) => {
-    console.log('On delete');
+    try {
+        const id = req.body.id;
+
+        if (!id) {
+            return res.render('dashboard', { name: req.name, username: req.username, items: req.items || [], message: 'Заполните все поля.' });
+        }
+
+        await deleteProduct(id);
+        next();
+    } catch (err) {
+        console.error(err);
+        res.status(500).render('error', { code: 500, message: 'Внутренняя ошибка сервера.' });
+    }
 };
 
-module.exports = { addProduct, getProducts, editProducts, deleteProducts };
+module.exports = { addProducts, getProducts, editProducts, deleteProducts };
