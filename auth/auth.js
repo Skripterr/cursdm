@@ -36,7 +36,7 @@ const validateJsonWebToken = (req, res, next) => {
     }
 
     jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-        if (err) {
+        if (err || !decoded) {
             // Cookie can't unset due to browser privacy.
             // Happens when i tries to login in Requestly
             res.status(403);

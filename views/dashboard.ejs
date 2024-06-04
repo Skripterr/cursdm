@@ -150,7 +150,7 @@
 
                 <tbody class="bg-white divide-y divide-gray-200">
                     <div x-data="{ openModalEdit: false }">
-                        <div x-show="openModalEdit">
+                        <div x-show="openModalEdit" id="openModalEdit">
                             <div class="fixed inset-0 z-5 transition-opacity" aria-hidden="true">
                                 <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
                             </div>
@@ -198,7 +198,7 @@
                                         <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md">
                                             Сохранить
                                         </button>
-                                        <button @click.prevent="openModalEdit = false"
+                                        <button @click.prevent="openModalEdit = false" id="openModalEditCloseBtn"
                                             class="px-4 py-2 bg-gray-500 text-white rounded-md">
                                             Закрыть
                                         </button>
@@ -291,6 +291,11 @@
                 $('#typeModalEdit').val(row.data('type'));
                 $('#vendorModalEdit').val(row.data('vendor'));
                 $('#release_dateModalEdit').val(row.data('release-date'));
+                $('#openModalEdit').show();
+            });
+
+            $('#openModalEditCloseBtn').on('click', function() {
+                $('#openModalEdit').hide();
             });
         });
     </script>
