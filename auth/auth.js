@@ -43,7 +43,7 @@ const validateJsonWebToken = (req, res, next) => {
             res.clearCookie('access_token');
             res.render('error', {code: 403, message: 'Вы не вошли как пользователь.'});
         }
-
+        console.log(decoded);
         req.userId = decoded.userId;
         next();
     });

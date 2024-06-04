@@ -2,7 +2,7 @@ const express = require('express');
 const { initializeDB, closeDB } = require('./db/db');
 const { signIn, validateJsonWebToken, signOut } = require('./auth/auth');
 const { getUser } = require('./user/user');
-const { addProducts, getProducts, editProducts, deleteProducts } = require('./product/product');
+const { addProducts, getProducts, getProduct, createReport, editProducts, deleteProducts } = require('./product/product');
 const cookieParser = require('cookie-parser');
 const path = require('path');
 const dotenv = require('dotenv');
@@ -60,6 +60,8 @@ app.post('/editProduct', validateJsonWebToken, getUser, editProducts, (req, res)
 app.post('/deleteProduct', validateJsonWebToken, getUser, deleteProducts, (req, res) => {
   res.redirect('/dashboard?success=1');
 });
+
+app.post('/pdf', validateJsonWebToken, getUser, getProduct, createReport);
 
 app.all('/*', (req, res) => {
   res.status(404).render('error', { code: 404, message: 'Ресурс не найден.' });

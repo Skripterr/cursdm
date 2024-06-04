@@ -44,4 +44,15 @@ const getProductsAll = () => {
     });
 };
 
-module.exports = { createProduct, updateProduct, deleteProduct, getProductsAll };
+const getProductOne = (id) => {
+    return new Promise((resolve, reject) => {
+        db.get('SELECT * from products WHERE id = ?', [id], (err, row) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(row);
+        });
+    });
+};
+
+module.exports = { createProduct, updateProduct, deleteProduct, getProductsAll, getProductOne };
