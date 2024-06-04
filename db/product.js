@@ -1,23 +1,23 @@
 const { db } = require('./db');
 
-const createProduct = (name, type, vendor, release_date, author) => {
+const createProduct = (name, serial_number, measurement_range, accuracy, calibration_date, trustee, placement) => {
     return new Promise((resolve, reject) => {
-        db.run('INSERT INTO products (name, type, vendor, release_date, add_author) VALUES (?, ?, ?, ?, ?)', [name, type, vendor, release_date, author], (err) => {
+        db.run('INSERT INTO products (name, serial_number, measurement_range, accuracy, calibration_date, trustee, placement) VALUES (?, ?, ?, ?, ?, ?, ?)', [name, serial_number, measurement_range, accuracy, calibration_date, trustee, placement], (err) => {
             if (err) {
                 return reject(err);
             }
-            resolve({ id: this.lastID, name, type, vendor, release_date, author });
+            resolve({ id: this.lastID, name, serial_number, measurement_range, accuracy, calibration_date, trustee, placement });
         });
     });
 };
 
-const updateProduct = (id, name, type, vendor, release_date, author) => {
+const updateProduct = (id, name, serial_number, measurement_range, accuracy, calibration_date, trustee, placement) => {
     return new Promise((resolve, reject) => {
-        db.run('UPDATE products SET name = ?, type = ?, vendor = ?, release_date = ?, add_author = ? WHERE id = ?', [name, type, vendor, release_date, author, id], (err) => {
+        db.run('UPDATE products SET name = ?, serial_number = ?, measurement_range = ?, accuracy = ?, calibration_date = ?, trustee = ?, placement = ?', [name, serial_number, measurement_range, accuracy, calibration_date, trustee, placement], (err) => {
             if (err) {
                 return reject(err);
             }
-            resolve({ id, name, type, vendor, release_date, author });
+            resolve({ id, name, serial_number, measurement_range, accuracy, calibration_date, trustee, placement });
         });
     });
 };

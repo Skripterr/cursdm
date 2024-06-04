@@ -46,7 +46,7 @@ app.post('/signin', signIn);
 app.get('/signout', signOut);
 
 app.get('/dashboard', validateJsonWebToken, getUser, getProducts, (req, res) => {
-  res.render('dashboard', { name: req.name, username: req.username, items: req.items });
+  res.render('dashboard', { name: req.userName, username: req.userUserName, items: req.items });
 });
 
 app.post('/addProduct', validateJsonWebToken, getUser, addProducts, (req, res) => {

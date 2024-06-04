@@ -80,37 +80,49 @@
                                     <label for="name" class="block text-gray-700 font-medium mb-2">
                                         Наименование
                                     </label>
-                                    <input type="text" id="name" name="name" required
+                                    <input type="text" id="nameModalAdd" name="name" required
                                         class="border rounded border border-gray-400 p-2 w-full">
                                 </div>
                                 <div class="mb-4">
-                                    <label for="type" class="block text-gray-700 font-medium mb-2">
-                                        Тип
+                                    <label for="serial_number" class="block text-gray-700 font-medium mb-2">
+                                        Серийный номер
                                     </label>
-                                    <select type="text" id="typeModalEdit" name="type" required
+                                    <input type="text" id="serial_numberModalAdd" name="serial_number" required
                                         class="border rounded border border-gray-400 p-2 w-full">
-                                        <option value="Kernal">Kernal</option>
-                                        <option value="External">External</option>
-                                        <option value="Internal">Internal</option>
-                                    </select>
                                 </div>
                                 <div class="mb-4">
-                                    <label for="vendor" class="block text-gray-700 font-medium mb-2">
-                                        Производитель
+                                    <label for="measurement_range" class="block text-gray-700 font-medium mb-2">
+                                        Диапазон измерения
                                     </label>
-                                    <select type="text" id="vendorModalEdit" name="vendor" required
+                                    <input type="text" id="measurement_rangeModalAdd" name="measurement_range" required
                                         class="border rounded border border-gray-400 p-2 w-full">
-                                        <option value="Incel Inc.">Incel Inc.</option>
-                                        <option value="Say Gex co.">Say Gex co.</option>
-                                        <option value="NVIDIA">NVIDIA</option>
-                                        <option value="AMD">AMD</option>
-                                    </select>
                                 </div>
                                 <div class="mb-4">
-                                    <label for="release_date" class="block text-gray-700 font-medium mb-2">
-                                        Год выпуска
+                                    <label for="accuracy" class="block text-gray-700 font-medium mb-2">
+                                        Погрешность
                                     </label>
-                                    <input type="date" id="release_date" name="release_date" required
+                                    <input type="text" id="accuracyModalAdd" name="accuracy" required
+                                        class="border rounded border border-gray-400 p-2 w-full">
+                                </div>
+                                <div class="mb-4">
+                                    <label for="calibration_date" class="block text-gray-700 font-medium mb-2">
+                                        Дата последней поверки
+                                    </label>
+                                    <input type="datetime-local" id="calibration_dateModalAdd" name="calibration_date"
+                                        required class="border rounded border border-gray-400 p-2 w-full">
+                                </div>
+                                <div class="mb-4">
+                                    <label for="trustee" class="block text-gray-700 font-medium mb-2">
+                                        Поверяющее лицо
+                                    </label>
+                                    <input type="text" id="trusteeModalAdd" name="trustee" required
+                                        class="border rounded border border-gray-400 p-2 w-full">
+                                </div>
+                                <div class="mb-4">
+                                    <label for="placement" class="block text-gray-700 font-medium mb-2">
+                                        Место установки прибора
+                                    </label>
+                                    <input type="text" id="placementModalAdd" name="placement" required
                                         class="border rounded border border-gray-400 p-2 w-full">
                                 </div>
                                 <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md">
@@ -131,16 +143,28 @@
                 <thead class="bg-gray-50">
                     <tr>
                         <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Номер
+                        </th>
+                        <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Наименование
                         </th>
                         <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Тип
+                            Серийный номер
                         </th>
                         <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Производитель
+                            Диапазон измерения
                         </th>
                         <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Год выпуска
+                            Погрешность
+                        </th>
+                        <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Дата поверки
+                        </th>
+                        <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Поверяющее лицо
+                        </th>
+                        <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Место установки
                         </th>
                         <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Действия
@@ -166,33 +190,46 @@
                                                 class="border rounded border border-gray-400 p-2 w-full">
                                         </div>
                                         <div class="mb-4">
-                                            <label for="type" class="block text-gray-700 font-medium mb-2">
-                                                Тип
+                                            <label for="serial_number" class="block text-gray-700 font-medium mb-2">
+                                                Серийный номер
                                             </label>
-                                            <select type="text" id="typeModalEdit" name="type" required
+                                            <input type="text" id="serial_numberModalEdit" name="serial_number" required
                                                 class="border rounded border border-gray-400 p-2 w-full">
-                                                <option value="Kernal">Kernal</option>
-                                                <option value="External">External</option>
-                                                <option value="Internal">Internal</option>
-                                            </select>
                                         </div>
                                         <div class="mb-4">
-                                            <label for="vendor" class="block text-gray-700 font-medium mb-2">
-                                                Производитель
+                                            <label for="measurement_range" class="block text-gray-700 font-medium mb-2">
+                                                Диапазон измерения
                                             </label>
-                                            <select type="text" id="vendorModalEdit" name="vendor" required
-                                                class="border rounded border border-gray-400 p-2 w-full">
-                                                <option value="Incel Inc.">Incel Inc.</option>
-                                                <option value="Say Gex co.">Say Gex co.</option>
-                                                <option value="NVIDIA">NVIDIA</option>
-                                                <option value="AMD">AMD</option>
-                                            </select>
+                                            <input type="text" id="measurement_rangeModalEdit" name="measurement_range"
+                                                required class="border rounded border border-gray-400 p-2 w-full">
                                         </div>
                                         <div class="mb-4">
-                                            <label for="release_date" class="block text-gray-700 font-medium mb-2">
-                                                Год выпуска
+                                            <label for="accuracy" class="block text-gray-700 font-medium mb-2">
+                                                Погрешность
                                             </label>
-                                            <input type="date" id="release_dateModalEdit" name="release_date" required
+                                            <input type="text" id="accuracyModalEdit" name="accuracy" required
+                                                class="border rounded border border-gray-400 p-2 w-full">
+                                        </div>
+                                        <div class="mb-4">
+                                            <label for="calibration_date" class="block text-gray-700 font-medium mb-2">
+                                                Дата последней поверки
+                                            </label>
+                                            <input type="datetime-local" id="calibration_dateModalEdit"
+                                                name="calibration_date" required
+                                                class="border rounded border border-gray-400 p-2 w-full">
+                                        </div>
+                                        <div class="mb-4">
+                                            <label for="trustee" class="block text-gray-700 font-medium mb-2">
+                                                Поверяющее лицо
+                                            </label>
+                                            <input type="text" id="trusteeModalEdit" name="trustee" required
+                                                class="border rounded border border-gray-400 p-2 w-full">
+                                        </div>
+                                        <div class="mb-4">
+                                            <label for="placement" class="block text-gray-700 font-medium mb-2">
+                                                Место установки прибора
+                                            </label>
+                                            <input type="text" id="placementModalEdit" name="placement" required
                                                 class="border rounded border border-gray-400 p-2 w-full">
                                         </div>
                                         <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md">
@@ -208,23 +245,37 @@
                         </div>
 
                         <% for(let item of items) { %>
-                            <tr data-id="<%= item.id %>" data-name="<%= item.name %>" data-type="<%= item.type %>"
-                                data-vendor="<%= item.vendor %>" data-release-date="<%= item.release_date %>">
+                            <tr data-id="<%= item.id %>" data-name="<%= item.name %>"
+                                data-serial-number="<%= item.serial_number %>"
+                                data-measurement-range="<%= item.measurement_range %>"
+                                data-accuracy="<%= item.accuracy %>"
+                                data-calibration-date="<%= item.calibration_date %>" data-trustee="<%= item.trustee %>"
+                                data-placement="<%= item.placement %>">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <%= item.id %>
+                                </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <%= item.name %>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <%= item.type %>
+                                    <%= item.serial_number %>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <%= item.vendor %>
+                                    <%= item.measurement_range %>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <%= item.release_date %>
+                                    <%= item.accuracy %>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <!-- Кусок нерабочего кода -->
-
+                                    <%= item.calibration_date %>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <%= item.trustee %>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <%= item.placement %>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
                                     <button x-on:click="openModalEdit = true"
                                         class="openModalEditBtn inline-block align-baseline text-blue-500 hover:text-blue-800 ml-2"
                                         type="button">
@@ -237,9 +288,7 @@
 
                                     <form action="/pdf" method="POST" class="inline-block align-baseline">
                                         <input type="hidden" name="id" value="<%= item.id %>">
-                                        <button
-                                            class="text-blue-500 hover:text-blue-800 ml-2"
-                                            type="submit">
+                                        <button class="text-blue-500 hover:text-blue-800 ml-2" type="submit">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                                 stroke-linecap="round" stroke-linejoin="round">
@@ -255,8 +304,7 @@
 
                                     <form action="/deleteProduct" method="POST" class="inline-block align-baseline">
                                         <input type="hidden" name="id" value="<%= item.id %>">
-                                        <button class="text-red-500 hover:text-red-800 ml-2"
-                                            type="submit">
+                                        <button class="text-red-500 hover:text-red-800 ml-2" type="submit">
                                             <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
                                                 fill="currentColor">
                                                 <path fill-rule="evenodd"
@@ -288,13 +336,16 @@
                 const row = $(this).closest('tr');
                 $('#idModalEdit').val(row.data('id'));
                 $('#nameModalEdit').val(row.data('name'));
-                $('#typeModalEdit').val(row.data('type'));
-                $('#vendorModalEdit').val(row.data('vendor'));
-                $('#release_dateModalEdit').val(row.data('release-date'));
+                $('#serial_numberModalEdit').val(row.data('serial-number'));
+                $('#measurement_rangeModalEdit').val(row.data('measurement-range'));
+                $('#accuracyModalEdit').val(row.data('accuracy'));
+                $('#calibration_dateModalEdit').val(row.data('calibration-date'));
+                $('#trusteeModalEdit').val(row.data('trustee'));
+                $('#placementModalEdit').val(row.data('placement'));
                 $('#openModalEdit').show();
             });
 
-            $('#openModalEditCloseBtn').on('click', function() {
+            $('#openModalEditCloseBtn').on('click', function () {
                 $('#openModalEdit').hide();
             });
         });

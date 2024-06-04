@@ -11,9 +11,7 @@ let db = new sqlite3.Database(':memory:', (err) => {
 const initializeDB = () => {
   db.serialize(() => {
     db.run('CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT, username TEXT, password TEXT)');
-    db.run('CREATE TABLE types (id INTEGER PRIMARY KEY, name TEXT, description TEXT)');
-    db.run('CREATE TABLE vendors (id INTEGER PRIMARY KEY, name TEXT, country TEXT)');
-    db.run('CREATE TABLE products (id INTEGER PRIMARY KEY, name TEXT, type TEXT, vendor TEXT, release_date TEXT, add_author INTEGER)');
+    db.run('CREATE TABLE products (id INTEGER PRIMARY KEY, name TEXT, serial_number TEXT, measurement_range TEXT, accuracy TEXT, calibration_date TEXT, trustee TEXT, placement TEXT)');
   });
 };
 

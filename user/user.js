@@ -11,8 +11,8 @@ const getUser = async (req, res, next) => {
             return res.status(404).render('error', { code: 404, message: 'Не найден пользователь. Обратитесь к администратору.' });
         }
 
-        req.name = user.name;
-        req.username = user.username;
+        req.userName = user.name;
+        req.userUserName = user.username;
         next();
     } catch (err) {
         console.error(err);
